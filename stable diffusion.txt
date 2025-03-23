@@ -1,0 +1,15 @@
+pip install diffusers
+
+from diffusers import StableDiffusionPipeline
+import torch
+import matplotlib.pyplot as plt
+
+pipeline=StableDiffusionPipeline.from_pretrained("CompVis/stable-diffusion-v1-4")
+pipeline=pipeline.to("cuda")
+
+prompt="rcb team with ipl final cup"
+image =pipeline(prompt, num_interference_steps=50).images[0]
+
+plt.imshow(image)
+plt.axis("off")
+plt.show()
